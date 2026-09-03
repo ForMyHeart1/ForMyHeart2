@@ -468,13 +468,14 @@ header{
   gap:10px;
 }
 .calc-btn{
-  aspect-ratio:1;
   border:none;
   border-radius:50%;
   background:#2c2c30;
   color:#fff;
   font-size:22px;
   font-family:'IBM Plex Mono', monospace;
+  width:100%;
+  min-height:56px;
 }
 .calc-btn.op{ background:#3a3a40; color:#ffb84d; }
 .calc-btn.eq{ background:#ff9f43; color:#1a1a1a; }
