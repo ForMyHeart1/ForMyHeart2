@@ -60,3 +60,24 @@ function evaluateExpression(){
     display = "";
   }
 }
+
+// ---------- سازگاری با WebViewهای قدیمی ----------
+// بعضی WebViewهای اپ‌های APK-شده از CSS aspect-ratio پشتیبانی نمی‌کنن،
+// برای همین با جاوااسکریپت مطمئن می‌شیم دکمه‌های ماشین‌حساب همیشه دایره‌ی درست بمونن
+function fixCalcButtonSizes(){
+  document.querySelectorAll(".calc-btn:not(.zero)").forEach(btn=>{
+    const w = btn.offsetWidth;
+    if(w > 0){
+      btn.style.height = w + "px";
+    }
+  });
+  const zeroBtn = document.querySelector(".calc-btn.zero");
+  if(zeroBtn && zeroBtn.offsetWidth > 0){
+    zeroBtn.style.height = (zeroBtn.offsetWidth / 2) + "px";
+  }
+}
+
+window.addEventListener("load", fixCalcButtonSizes);
+window.addEventListener("resize", fixCalcButtonSizes);
+// یه بار با تاخیر کوچیک هم اجرا می‌شه، چون بعضی WebViewها دیر اندازه‌ی واقعی رو گزارش می‌دن
+setTimeout(fixCalcButtonSizes, 200);
